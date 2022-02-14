@@ -1,0 +1,6 @@
+openapi: 3.0.0
+# https://petstore3.swagger.io/api/v3/openapi.json
+info:
+  title: Pet Shop APIs
+  #  description: Pet Shop APIs.
+  version: 1.0.0
