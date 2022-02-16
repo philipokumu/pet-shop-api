@@ -14,6 +14,8 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, UuidTrait;
 
+    // protected $primaryKey = 'user_id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -68,7 +70,9 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'uuid' => $this->uuid
+        ];
     }
     
 }

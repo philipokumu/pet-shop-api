@@ -5,7 +5,10 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserTest extends TestCase
 {
@@ -13,8 +16,6 @@ class UserTest extends TestCase
     
     public function test_a_guest_user_can_create_a_customer_account()
     {
-        $this->withoutExceptionHandling();
-
         $response = $this->post('/api/v1/user/create', [
             'first_name' => 'James',
             'last_name' => 'Bond',
@@ -59,9 +60,7 @@ class UserTest extends TestCase
 
     public function test_a_user_with_customer_account_can_login()
     {
-        $this->withoutExceptionHandling();
-
-        $user = User::factory()->create(['email'=>'james@bond.com']);
+        User::factory()->create(['email'=>'james@bond.com', 'password' => Hash::make('password')]);
 
         $response = $this->post('/api/v1/user/login', [
             'email' => 'james@bond.com',
@@ -72,5 +71,18 @@ class UserTest extends TestCase
                 'access_token', 'token_type', 'expires_in'
         ]);
 
+    }
+
+
+    public function test_a_user_can_logout()
+    {
+        $user = User::factory()->create(['email'=>'james@bond.com', 'password' => Hash::make('password')]);
+
+         // Authenticate user
+        $this->actingAs($user);
+
+        $response = $this->get('/api/v1/user/logout')->assertStatus(200);;
+
+        $response->assertStatus(200);
     }
 }
