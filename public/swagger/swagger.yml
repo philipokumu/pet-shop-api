@@ -10,6 +10,10 @@ tags:
     description: User Api endpoint
   - name: Orders
     description: Orders Api endpoint
+  - name: Categories
+    description: List all categories
+  - name: Products
+    description: List all products
 
 paths:
   /api/v1/user/login:
@@ -135,6 +139,51 @@ paths:
         - Categories
       summary: List all categories
       operationId: categories-listing
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Page not found
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal server error
+      security: []
+
+  /api/v1/products:
+    get:
+      tags:
+        - Products
+      summary: List all products
+      operationId: products-listing
+      responses:
+        200:
+          description: OK
+        401:
+          description: Unauthorized
+        404:
+          description: Page not found
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Internal server error
+      security: []
+
+  /api/v1/product/{uuid}:
+    get:
+      tags:
+        - Products
+      summary: Fetch a product,
+      operationId: products-read
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+
       responses:
         200:
           description: OK

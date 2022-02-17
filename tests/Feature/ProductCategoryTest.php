@@ -50,7 +50,6 @@ class ProductCategoryTest extends TestCase
         $categories = Category::paginate(10);
 
         $response->assertStatus(200)
-            // ->assertJsonCount(2,'data')
             ->assertJson([
                 'data' => [
                     [

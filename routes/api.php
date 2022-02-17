@@ -28,4 +28,6 @@ Route::group(['prefix' => 'v1'], function () {
     });
     Route::get('category/{uuid}', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');
     Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
+    Route::get('product/{uuid}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
+    Route::get('products', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
 });
