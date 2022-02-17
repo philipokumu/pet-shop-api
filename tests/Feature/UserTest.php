@@ -81,7 +81,7 @@ class UserTest extends TestCase
          // Authenticate user
         $this->actingAs($user);
 
-        $response = $this->get('/api/v1/user/logout')->assertStatus(200);;
+        $response = $this->get('/api/v1/user/logout')->assertStatus(200);
 
         $response->assertStatus(200);
     }

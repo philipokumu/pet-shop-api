@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(1)->create(['email'=>'james@bond.com', 'password' => Hash::make('password')]);
+        \App\Models\Category::factory(20)->create();
     }
 }

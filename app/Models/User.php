@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\AddUuid;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use App\Traits\UuidTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, UuidTrait;
+    use HasApiTokens, HasFactory, Notifiable, AddUuid;
 
     // protected $primaryKey = 'user_id';
 

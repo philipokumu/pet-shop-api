@@ -4,15 +4,10 @@ namespace App\Traits;
 
 use Illuminate\Support\Str;
 
-trait UuidTrait
+trait AddUuid
 {
-    /**
-     * Boot function from Laravel.
-     */
-    protected static function boot()
+    public static function bootAddUuid()
     {
-        parent::boot();
-        
         static::creating(function ($model) {
             $model->uuid = Str::uuid()->toString();
         });

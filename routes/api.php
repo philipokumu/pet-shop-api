@@ -26,4 +26,6 @@ Route::group(['prefix' => 'v1'], function () {
         });
         Route::post('create', [App\Http\Controllers\AuthController::class, 'create'])->name('user.create');
     });
+    Route::get('category/{uuid}', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');
+    Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
 });
