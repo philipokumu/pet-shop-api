@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('jwt.auth')->get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'v1'], function () {
+
+    //Prefix user
     Route::group(['prefix' => 'user'], function () {
         Route::middleware('api')->group(function () {
             Route::post('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
@@ -25,6 +27,11 @@ Route::group(['prefix' => 'v1'], function () {
             });
         });
         Route::post('create', [App\Http\Controllers\AuthController::class, 'create'])->name('user.create');
+    });
+    
+    
+    Route::group(['prefix' => 'order','middleware' => ['api','jwt.auth']], function () {
+        Route::post('create', [App\Http\Controllers\OrderController::class, 'create'])->name('order.create');
     });
     Route::get('category/{uuid}', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');
     Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
