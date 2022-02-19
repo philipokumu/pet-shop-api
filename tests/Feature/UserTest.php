@@ -85,4 +85,131 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /** FIELD VALIDATIONS */
+
+    /** New user register validation */
+    public function test_first_name_required_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'first_name' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('first_name', $responseString['errors']['meta']);
+    }
+
+    public function test_last_name_required_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'last_name' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('last_name', $responseString['errors']['meta']);
+    }
+
+    public function test_email_required_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'email' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('email', $responseString['errors']['meta']);
+    }
+
+    public function test_password_required_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'password' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('password', $responseString['errors']['meta']);
+    }
+
+    public function test_password_confirmation_required_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'password_confirmation' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('password_confirmation', $responseString['errors']['meta']);
+    }
+
+    public function test_address_required_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'address' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('address', $responseString['errors']['meta']);
+    }
+
+    public function test_phone_number_required_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'phone_number' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('phone_number', $responseString['errors']['meta']);
+    }
+
+
+    public function test_password_is_confirmed_during_user_register()
+    {
+        // Test end point | register
+        $response = $this->post('/api/v1/user/create', [
+            'password' => '123456789',
+            'password_confirmation' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('password', $responseString['errors']['meta']);
+    }
+
+
+    /** Authenticate user validation */
+    public function test_email_required_during_user_login()
+    {
+        // Test end point | login
+        $response = $this->post('/api/v1/user/login', [
+            'email' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('email', $responseString['errors']['meta']);
+    }
+
+    public function test_password_required_during_user_login()
+    {
+        // Test end point | login
+        $response = $this->post('/api/v1/user/login', [
+            'password' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('password', $responseString['errors']['meta']);
+    }
 }
