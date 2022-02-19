@@ -18,8 +18,6 @@ class OrderTest extends TestCase
 
     public function test_authenticated_user_can_create_an_order()
     {
-        $this->withoutExceptionHandling();
-
         $user = User::factory()->create();
 
         // Authenticate user
@@ -37,6 +35,7 @@ class OrderTest extends TestCase
 
         // Create an order status
         $order_status = OrderStatus::factory()->create();
+        dd($order_status->uuid);
 
         //Endpoint to be tested
         $response = $this->post('/api/v1/order/create', [
@@ -82,5 +81,75 @@ class OrderTest extends TestCase
             'errors' => [],
             'extra' => []
         ]);
+    }
+
+
+    /** FIELD VALIDATIONS */
+    public function test_payment_uuid_required_when_creating_order()
+    {
+        $user = User::factory()->create();
+
+        // Authenticate user
+        $this->actingAs($user);
+
+        // Test end point | register
+        $response = $this->post('/api/v1/order/create', [
+            'payment_uuid' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('payment_uuid', $responseString['errors']['meta']);
+    }
+
+    public function test_order_status_uuid_required_when_creating_order()
+    {
+        $user = User::factory()->create();
+
+        // Authenticate user
+        $this->actingAs($user);
+        
+        // Test end point | register
+        $response = $this->post('/api/v1/order/create', [
+            'order_status_uuid' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('order_status_uuid', $responseString['errors']['meta']);
+    }
+
+    public function test_address_required_when_creating_order()
+    {
+        $user = User::factory()->create();
+
+        // Authenticate user
+        $this->actingAs($user);
+        
+        // Test end point | register
+        $response = $this->post('/api/v1/order/create', [
+            'address' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('address', $responseString['errors']['meta']);
+    }
+
+    public function test_products_required_when_creating_order()
+    {
+        $user = User::factory()->create();
+
+        // Authenticate user
+        $this->actingAs($user);
+        
+        // Test end point | register
+        $response = $this->post('/api/v1/order/create', [
+            'products' => '',
+        ]);
+
+        $responseString = json_decode($response->getContent(), true);
+
+        $this->assertArrayHasKey('products', $responseString['errors']['meta']);
     }
 }
