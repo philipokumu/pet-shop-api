@@ -15,5 +15,6 @@ yarn-error.log
 /.vscode
 /postgres-data
 /tools
+/src
 docker-compose.yml
 Dockerfile
