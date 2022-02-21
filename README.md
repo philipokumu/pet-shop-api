@@ -20,5 +20,7 @@ php artisan serve
 
 #### Access the site through the link provided by the above command.
 
+#### Default routes:
+
 Home link: http://127.0.0.1:8000
 Swagger link: http://127.0.0.1:8000/swagger/index.html
