@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->double('amount',12,2);
             $table->double('delivery_fee',8,2);
-            $table->string('address');
+            $table->json('address');
             $table->json('products');
             $table->timestamps();
         });

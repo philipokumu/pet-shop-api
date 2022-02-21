@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
-        'Uuids',
+        'Uuid',
         'first_name',
         'last_name',
         'email',
@@ -73,6 +73,12 @@ class User extends Authenticatable implements JWTSubject
         return [
             'uuid' => $this->uuid
         ];
+    }
+
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
     
 }

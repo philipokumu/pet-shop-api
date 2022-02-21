@@ -17,11 +17,6 @@ class Order extends JsonResource
         return [
             'data' => [
                 'uuid' => $this->uuid,
-                'amount' => $this->amount,
-                'delivery_fee' => $this->delivery_fee,
-                'products' => $this->products,
-                'created_at' => ($this->created_at)->toDateTimeString(),
-                'updated_at' => ($this->updated_at)->toDateTimeString()
         ],
         'error' => null,
         'errors' => [],

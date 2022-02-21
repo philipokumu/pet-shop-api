@@ -9,7 +9,9 @@ trait AddUuid
     public static function bootAddUuid()
     {
         static::creating(function ($model) {
-            $model->uuid = Str::uuid()->toString();
+            if (!isset($model->uuid)) {
+                $model->uuid = Str::uuid()->toString();
+            }
         });
     }
 }

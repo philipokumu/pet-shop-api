@@ -21,7 +21,7 @@ class Product extends JsonResource
                 'slug'=>$this->slug,
                 'title'=>$this->title,
                 'price'=>$this->price,
-                'category_id'=>$this->category_id,
+                'category_uuid'=>$this->category_uuid,
                 'description'=>$this->description,
                 'created_at'=>($this->created_at)->toDateTimeString(),
                 'updated_at'=>($this->updated_at)->toDateTimeString(),

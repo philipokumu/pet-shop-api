@@ -18,6 +18,7 @@ class OrderTest extends TestCase
 
     public function test_authenticated_user_can_create_an_order()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create();
 
         // Authenticate user
@@ -35,23 +36,25 @@ class OrderTest extends TestCase
 
         // Create an order status
         $order_status = OrderStatus::factory()->create();
-        dd($order_status->uuid);
 
         //Endpoint to be tested
         $response = $this->post('/api/v1/order/create', [
             'order_status_uuid' => $order_status->uuid,
             'payment_uuid' => $payment->uuid,
-            'address' => 'Amsterdam, West Grove, 412',
+            'address' => [
+                'billing' => 'West Grove',
+                'shipping' => 'Amsterdam, West Grove, 412'
+            ],
             'products' => [
                 [
-                    'product_uuid' => $product1->uuid,
+                    'uuid' => $product1->uuid,
                     'quantity' => 5,
                 ],
                 [
-                    'product_uuid' => $product2->uuid,
-                    'quantity' => 8,
+                'uuid' => $product2->uuid,
+                'quantity' => 8,
                 ],
-            ],
+            ]
         ]);
 
         $order_count = Order::all();
@@ -63,7 +66,7 @@ class OrderTest extends TestCase
         $this->assertEquals($order->user_id, $user->id);
         $this->assertEquals($order->order_status_id, $order_status->id);
         $this->assertEquals($order->payment_id, $payment->id);
-        $this->assertEquals($order->address, 'Amsterdam, West Grove, 412');
+        $this->assertNotNull($order->address);
         $this->assertNotNull($order->amount);
         $this->assertNotNull($order->delivery_fee);
 
@@ -71,11 +74,6 @@ class OrderTest extends TestCase
         ->assertJson([
             'data' => [
                     'uuid' => $order->uuid,
-                    'amount' => $order->amount,
-                    'delivery_fee' => $order->delivery_fee,
-                    'products' => $order->products,
-                    'created_at' => ($order->created_at)->toDateTimeString(),
-                    'updated_at' => ($order->updated_at)->toDateTimeString()
             ],
             'error' => null,
             'errors' => [],

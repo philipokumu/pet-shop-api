@@ -25,8 +25,8 @@ Route::group(['prefix' => 'v1'], function () {
             Route::middleware('jwt.auth')->group(function () {
                 Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
             });
+            Route::post('create', [App\Http\Controllers\AuthController::class, 'create'])->name('user.create');
         });
-        Route::post('create', [App\Http\Controllers\AuthController::class, 'create'])->name('user.create');
     });
     
     

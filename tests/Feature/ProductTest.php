@@ -34,7 +34,7 @@ class ProductTest extends TestCase
                         'title' => $product->title,
                         'slug' => $product->slug,
                         'price' => $product->price,
-                        'category_id' => $product->category_id,
+                        'category_uuid' => $product->category_uuid,
                         'description' => $product->description,
                         'created_at' => ($product->created_at)->toDateTimeString(),
                         'updated_at' => ($product->updated_at)->toDateTimeString()

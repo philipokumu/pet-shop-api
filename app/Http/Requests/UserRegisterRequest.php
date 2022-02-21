@@ -35,7 +35,7 @@ class UserRegisterRequest extends FormRequest
             'avatar' => '',
             'address' => 'required',
             'phone_number' => 'required',
-            'is_marketing' => '',
+            'is_marketing' => 'nullable|integer',
         ];
     }
 

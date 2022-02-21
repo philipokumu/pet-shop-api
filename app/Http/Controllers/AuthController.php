@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserLoginRequest;
+use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\User as UserResource;
 use App\Models\User;
@@ -20,13 +22,13 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login','create']]);
     }
     
-    public function create(UserRequest $request)
+    public function create(UserRegisterRequest $request)
     {
         $user = new User([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'is_marketing' => $request->is_marketing,
+            'is_marketing' => $request->is_marketing ?? 0,
             'address' => $request->address,
             'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
@@ -34,15 +36,13 @@ class AuthController extends Controller
 
         if ($user->save()) {
 
-            event(new Registered($user));
-
             return new UserResource($user);
         }
     }
 
-    public function login()
+    public function login(UserLoginRequest $request)
     {
-        $credentials = request(['email', 'password']);
+        $credentials = ['email'=>$request->email,'password'=>$request->password];
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -56,10 +56,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
-    {
-        return response()->json(auth()->user());
-    }
+    // public function me()
+    // {
+    //     return response()->json(auth()->user());
+    // }
 
     /**
      * Log the user out (Invalidate the token).
