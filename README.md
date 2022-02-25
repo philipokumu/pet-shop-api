@@ -11,6 +11,8 @@ There are two ways to setup this project:
 
 <ul>
 <li>Run: docker-compose up -d --build</li>
+<li>Run: docker-compose exec composer install</li>
+<li>Run: docker-compose exec cp .env.docker .env</li>
 <li>Run: docker-compose exec php php artisan migrate --seed</li>
 <li>Run: docker-compose exec php php artisan jwt:secret</li>
 </ul>
@@ -24,7 +26,7 @@ There are two ways to setup this project:
 
 #### Run phpunit tests
 
-Run: docker-compose exec vendor/bin/phpunit
+Run: docker-compose exec php vendor/bin/phpunit
 
 ## 2. Manual installation
 
