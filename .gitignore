@@ -13,8 +13,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/postgres-data
-/tools
-/src
-docker-compose.yml
-Dockerfile
+/mysql
