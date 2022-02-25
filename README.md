@@ -1,3 +1,5 @@
+<p>Clone repo and cd into pet-shop-api</p>
+
 There are two ways to setup this project:
 
 <ul>
@@ -8,7 +10,6 @@ There are two ways to setup this project:
 ## 1. Docker installation
 
 <ul>
-<li>Clone repo</li>
 <li>Run: docker-compose up -d --build</li>
 <li>Run: docker-compose exec php php artisan migrate --seed</li>
 <li>Run: docker-compose exec php php artisan jwt:secret</li>
@@ -26,8 +27,6 @@ There are two ways to setup this project:
 Run: docker-compose vendor/bin/phpunit
 
 ## 2. Manual installation
-
-Clone repo and cd into pet-shop-api
 
 #### Install composer dependencies
 
