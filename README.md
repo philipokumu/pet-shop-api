@@ -41,7 +41,9 @@ composer install
 <li>cp .env.example .env</li>
 <li>php artisan key:generate</li>
 </ul>
+
 #### Migrate and seed the database and set jwt secret
+
 <ul>
 <li>php artisan migrate:fresh --seed</li>
 <li>php artisan jwt:secret</li>
