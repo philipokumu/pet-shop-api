@@ -1,15 +1,16 @@
 <p> Clone and cd into pet-shop-api</p>
 There are two ways to setup this project:
-<ul>
 <li>1. Docker Installation</li>
 <li>2. Manual Installation</li>
 <ul>
 
 ## 1. Docker installation
 
-Run: docker compose up -d --build
-Run: docker-compose exec php php artisan migrate --seed
-Run: docker-compose exec php php artisan jwt:secret
+<ul>
+<li>Run: docker compose up -d --build</li>
+<li>Run: docker-compose exec php php artisan migrate --seed</li>
+<li>Run: docker-compose exec php php artisan jwt:secret</li>
+</ul>
 
 #### Access site
 
