@@ -24,7 +24,7 @@ There are two ways to setup this project:
 
 #### Run phpunit tests
 
-Run: docker-compose vendor/bin/phpunit
+Run: docker-compose exec vendor/bin/phpunit
 
 ## 2. Manual installation
 
