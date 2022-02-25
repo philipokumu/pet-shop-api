@@ -22,7 +22,7 @@ There are two ways to setup this project:
 <li>Swagger link: http://127.0.0.1:8084/swagger/index.html</li>
 </ul>
 
-#### Run tests
+#### Run phpunit tests
 
 Run: docker-compose vendor/bin/phpunit
 
@@ -61,6 +61,6 @@ php artisan serve
 <li>Swagger link: http://127.0.0.1:8000/swagger/index.html</li>
 </ul>
 
-#### Run php unit tests
+#### Run phpunit tests
 
 vendor/bin/phpunit
