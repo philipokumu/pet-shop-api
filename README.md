@@ -1,4 +1,4 @@
-<p>Clone repo and cd into pet-shop-api</p>
+<p>First step: Clone repo and cd into pet-shop-api</p>
 
 There are two ways to setup this project:
 
