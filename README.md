@@ -9,7 +9,7 @@ There are two ways to setup this project:
 
 <ul>
 <li>Clone repo</li>
-<li>Run: docker compose up -d --build</li>
+<li>Run: docker-compose up -d --build</li>
 <li>Run: docker-compose exec php php artisan migrate --seed</li>
 <li>Run: docker-compose exec php php artisan jwt:secret</li>
 </ul>
